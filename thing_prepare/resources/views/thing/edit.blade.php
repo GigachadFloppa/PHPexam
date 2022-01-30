@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Title:</strong>
+                    <strong>Name:</strong>
                     <input type="text" name="name" value="{{ $thing->title }}" class="form-control" placeholder="Title">
                 </div>
             </div>

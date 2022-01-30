@@ -7,7 +7,7 @@
                 <h2>Laravel 8 CRUD Example from scratch </h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('items.create') }}"> Create New Product</a>
+                <a class="btn btn-success" href="{{ route('items.create') }}"> Create New Thing</a>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>Title</th>
+            <th>Name</th>
             <th>Description</th>
         </tr>
         @foreach ($things as $thing)

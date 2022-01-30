@@ -41,12 +41,12 @@ class ThingPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-//    public function create(User $user)
-//    {
-//        $role = Role::where('name', 'user')->value('id');
-//        if ($user->role_id == $role) return Response::deny('Нет доступа');
-//        return Response::allow();
-//    }
+    public function create(User $user)
+    {
+        $role = Role::where('name', 'admin')->value('id');
+        if ($user->role_id == $role) return Response::deny('Нет доступа');
+        return Response::allow();
+    }
 
     /**
      * Determine whether the user can update the model.

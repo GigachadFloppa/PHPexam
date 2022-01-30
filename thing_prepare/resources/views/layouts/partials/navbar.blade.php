@@ -7,36 +7,29 @@
       <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
       </a>
-
+        @if(!Auth::guest())
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Уведомления <span class="badge bg-info text-dark"> 0
-{{--                                            {{ auth()->user()->unreadNotifications->count() }}--}}
+                Уведомления <span class="badge bg-info text-dark">
+                                            {{ auth()->user()->unreadNotifications->count() }}
                 </span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {{--                @foreach(auth()->user()->unreadNotifications as $notification)--}}
-                {{--                    <li><a class="dropdown-item" href="#">{{ $notification->data['thing']['name'] }}</a></li>--}}
-                {{--                @endforeach--}}
-                <li><a class="dropdown-item" href="#">1</a></li>
-                <li><a class="dropdown-item" href="#">1</a></li>
-                <li><a class="dropdown-item" href="#">1</a></li>
-                <li><a class="dropdown-item" href="#">1</a></li>
+                                @foreach(auth()->user()->unreadNotifications as $notification)
+                                    <li><a class="dropdown-item" href="#">{{ $notification->data['thing']['name'] }}</a></li>
+                                @endforeach
+{{--                <li><a class="dropdown-item" href="#">1</a></li>--}}
+{{--                <li><a class="dropdown-item" href="#">1</a></li>--}}
+{{--                <li><a class="dropdown-item" href="#">1</a></li>--}}
+{{--                <li><a class="dropdown-item" href="#">1</a></li>--}}
             </ul>
         </li>
+        @endif
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="/" class="nav-link @linkactive('/')">Home</a></li>
-        <li><a href="/" class="nav-link @linkactive('/123')">Features</a></li>
-        <li><a href="/" class="nav-link  @linkactive('/234')">Pricing</a></li>
-        <li><a href="/" class="nav-link  @linkactive('/23445')">FAQs</a></li>
-        <li><a href="/thing" class="nav-link  @linkactive('thing')">About</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">CRUD</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">CRUD2</a></li>
+        <li><a href="thing" class="nav-link @linkactive('thing')">CRUD thing</a></li>
+        <li><a href="place" class="nav-link  @linkactive('place')">CRUD places</a></li>
       </ul>
-
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-      </form>
 
       @auth
         {{auth()->user()->name}}

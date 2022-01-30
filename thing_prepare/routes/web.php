@@ -35,17 +35,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
 
 
-    Route::resource('items', UserThingController::class);
-    Route::resource('thing', ThingController::class);
-    Route::resource('place', PlaceController::class);
-
-
-    Route::get('/listen', function(){
-        event(new EventPublicThing());
-    });
-
-    Route::get('/event', function(){
-        return view('listen')   ;
-});
+    Route::resource('items', UserThingController::class)->middleware(['auth:sanctum']);
+    Route::resource('thing', ThingController::class)->middleware(['auth:sanctum']);
+    Route::resource('place', PlaceController::class)->middleware(['auth:sanctum']);
 
 });

@@ -62,10 +62,12 @@ class ThingController extends Controller
         $uses->user_id = request('user');
         $uses->amount = 10;
         $uses->save();
-
-        $user = User::where('id', '==', auth()->user()->id)->get();
+        $user = User::where('id', '!=', auth()->user()->id)->get();
+        Notification::send($user, new NewThing(Thing::latest('id')->first()));
+//        $user = User::where('id', '==', auth()->user()->id)->get();
       //  $testMail = new OrderShipped('На вас назначена новая вещь'.$thing->name);
        // Mail::send($testMail);
+        MailSend::dispatch($thing);
         return redirect()->route('thing.index');
     }
 
