@@ -18,15 +18,15 @@ class Uses extends Model
     ];
 
     public function thing(){
-        return $this->hasMany(Thing::class, "id");
+        return $this->belongsTo(Thing::class, "id");
     }
 
     public function place(){
-        return $this->hasMany(Place::class, "id");
+        return $this->belongsTo(Place::class, "id");
     }
 
     public function user(){
-        return $this->hasMany(User::class, "id");
+        return $this->belongsTo(User::class, "id");
     }
 
 }

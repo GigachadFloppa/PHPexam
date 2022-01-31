@@ -61,7 +61,15 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
+    public function use_(){
+        return $this->hasMany(Uses::class);
+    }
+
     public function role(){
         return $this->belongsTo(Role::class);
+    }
+
+    public function thing_(){
+        return $this->hasMany(Thing::class);
     }
 }
