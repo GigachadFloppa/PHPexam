@@ -26,7 +26,7 @@ class Uses extends Model
     }
 
     public function user(){
-        return $this->hasOne(User::class, "id");
+        return $this->hasMany(User::class, "id");
     }
 
 }
