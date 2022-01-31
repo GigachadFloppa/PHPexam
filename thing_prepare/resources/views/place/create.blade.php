@@ -34,6 +34,7 @@
                     <textarea class="form-control" style="height:150px" name="repair" placeholder="Description"></textarea>
                 </div>
                 <div class="form-group">
+                    <strong>Work</strong>
                     <input type="checkbox" name = "work">
                 </div>
             </div>

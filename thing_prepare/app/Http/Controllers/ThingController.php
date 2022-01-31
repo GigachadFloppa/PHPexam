@@ -17,7 +17,7 @@ class ThingController extends Controller
 
     public function index()
     {
-        Cache::forget('things:all');
+//        Cache::forget('things:all');
         $things = Cache::rememberForever('things:all', function(){
             return Thing::all();});
         return view('thing.index', compact('things'));
