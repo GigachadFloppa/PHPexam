@@ -29,6 +29,7 @@
         <li><a href="/" class="nav-link @linkactive('/')">Home</a></li>
         <li><a href="thing" class="nav-link @linkactive('thing')">CRUD thing</a></li>
         <li><a href="place" class="nav-link  @linkactive('place')">CRUD places</a></li>
+          <li><a href="items" class="nav-link  @linkactive('items')">CRUD for user</a></li>
       </ul>
 
       @auth

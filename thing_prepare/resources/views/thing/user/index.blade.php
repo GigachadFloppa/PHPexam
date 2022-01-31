@@ -25,11 +25,8 @@
         </tr>
         @foreach ($things as $thing)
             <tr>
-                @if(auth()->user()->id == $thing->master)
-                    @ownthing
-                @else
-                    @notownthing
-                @endif
+                <td><font color="@ownthing($thing->master)">{{ $thing->name }} </font></td> <td>{{ $thing->description }} </td>
+
 
                 <td>
                     <a class="btn btn-info" href="{{ route('items.show',$thing->id) }}">Show</a>

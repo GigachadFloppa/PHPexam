@@ -25,7 +25,7 @@
         </tr>
         @foreach ($places as $place)
             <tr>
-                <td><font color='red'>{{ $place->name }}</font>
+                <td><font>{{ $place->name }}</font>
                 </td> <td>{{ $place->description }} </td>
                 <td>
                     <a class="btn btn-info" href="{{ route('place.show',$place->id) }}">Show</a>

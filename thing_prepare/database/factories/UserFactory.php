@@ -31,6 +31,15 @@ class UserFactory extends Factory
         ];
     }
 
+
+//    public function definition(): array
+//    {
+//        return [
+//            'title' => $this->faker->sentence,
+//            'author_id' => User::factory(),
+//        ];
+//    }
+
     /**
      * Indicate that the model's email address should be unverified.
      *

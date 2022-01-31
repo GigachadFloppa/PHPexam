@@ -19,4 +19,12 @@ class DatabaseSeeder extends Seeder
             placeSeeder::class,
         ]);
     }
+
+
+//    public function run()
+//    {
+//        User::factory()->create();
+//        Article::factory()->count(5)->create(); or  \App\Models\User::factory(10)->create();
+//    }
+//}
 }

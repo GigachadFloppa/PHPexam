@@ -6,9 +6,9 @@
                 <h2>Laravel 8 CRUD Example from scratch </h2>
             </div>
             <div class="pull-right">
-                @can('create')
+{{--                @can('create')--}}
                     <a class="btn btn-success" href="{{ route('thing.create') }}"> Create New Thing</a>
-                @endcan
+{{--                @endcan--}}
             </div>
         </div>
     </div>

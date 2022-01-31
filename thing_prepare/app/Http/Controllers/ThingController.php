@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Uses;
 use App\Notifications\NewThing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
@@ -19,20 +20,14 @@ class ThingController extends Controller
 {
     protected $table = 'thing';
 
-//Admin part
 
     public function index()
     {
-        $things = Thing::all();
-
+        $things = Cache::rememberForever('things:all', function(){
+            return Thing::all();});
         return view('thing.index', compact('things'));
     }
 
-    /**
-     * Выводит форму для создания нового ресурса
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $places = Place::all();
@@ -63,25 +58,17 @@ class ThingController extends Controller
         $uses->amount = 10;
         $uses->save();
         $user = User::where('id', '!=', auth()->user()->id)->get();
-        Notification::send($user, new NewThing(Thing::latest('id')->first()));
-//        $user = User::where('id', '==', auth()->user()->id)->get();
-      //  $testMail = new OrderShipped('На вас назначена новая вещь'.$thing->name);
-       // Mail::send($testMail);
-        MailSend::dispatch($thing);
+        Cache::forget('thing:all');
         return redirect()->route('thing.index');
     }
 
     public function show(Thing $thing)
     {
+        Cache::put('thing:'.$thing->id, $thing);
         return view('thing.show',compact('thing'));
     }
 
-    /**
-     * Выводит форму для редактирования указанного ресурса
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Thing $thing)
     {
         $places = Place::all();
@@ -101,7 +88,8 @@ class ThingController extends Controller
         $thing->uses_->place_id = request('place');
         $thing->uses_->user_id = request('user');
 
-
+        Cache::forget('articles:all');
+        Cache::forget('article:'.$thing->id);
         $thing->update($request->all());
 
         return redirect()->route('thing.index');
@@ -110,6 +98,8 @@ class ThingController extends Controller
 
     public function destroy(Thing $thing)
     {
+        Cache::forget('thing:all');
+        Cache::forget('thing:'.$thing->id);
         $thing->delete();
 
         return redirect()->route('thing.index')
@@ -119,28 +109,28 @@ class ThingController extends Controller
     //api
 
 
-    public function api_create(Request $request){
-
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'master' => 'required',
-            'wrnt' => 'required'
-        ]);
-
-        $thing = Thing::create([
-                'name' => $request->input('name'),
-                'description' => $request->input('description'),
-                'master' => $request->input('master'),
-                'wrnt' => $request->input('wrnt'),
-            ]);
-
-        $response = [
-          $thing
-        ];
-
-        return response($response, 201);
-    }
-
-
+//    public function api_create(Request $request){
+//
+//        $request->validate([
+//            'name' => 'required',
+//            'description' => 'required',
+//            'master' => 'required',
+//            'wrnt' => 'required'
+//        ]);
+//
+//        $thing = Thing::create([
+//                'name' => $request->input('name'),
+//                'description' => $request->input('description'),
+//                'master' => $request->input('master'),
+//                'wrnt' => $request->input('wrnt'),
+//            ]);
+//
+//        $response = [
+//          $thing
+//        ];
+//
+//        return response($response, 201);
+//    }
+//
+//
 }
