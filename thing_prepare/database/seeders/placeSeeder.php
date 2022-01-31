@@ -10,8 +10,8 @@ class placeSeeder extends Seeder
     public function run()
     {
         $place1 = new Place();
-        $place1->name = 'mouka';
-        $place1->description = 'aimple moyka';
+        $place1->name = 'svalka';
+        $place1->description = 'simple svalka';
         $place1->repair = 'smth';
         $place1->work = false;
         $place1->save();
