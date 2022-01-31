@@ -20,8 +20,8 @@ class userSeeder extends Seeder
         $reader = Role::where('name', 'user')->value('id');
 
         $user1 = new User();
-        $user1->username = 'yaro';
-        $user1->email = 'moosbeere_O@mail.ru';
+        $user1->username = 'vest';
+        $user1->email = 'vest@mail.ru';
         $user1->password = 123456789;
         $user1->role_id = $moderator;
         $user1->save();

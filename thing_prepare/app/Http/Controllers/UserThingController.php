@@ -44,7 +44,7 @@ class UserThingController extends Controller
         $uses->thing_id = $thing->id;
         $uses->place_id = request('place');
         $uses->user_id = request('user');
-        $uses->amount = 10;
+        $uses->amount = 1;
         $uses->save();
 
         $user = User::where('id', '==', auth()->user()->id)->get();

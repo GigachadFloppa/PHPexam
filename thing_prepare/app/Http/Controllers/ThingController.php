@@ -88,8 +88,8 @@ class ThingController extends Controller
         $thing->uses_->place_id = request('place');
         $thing->uses_->user_id = request('user');
 
-        Cache::forget('articles:all');
-        Cache::forget('article:'.$thing->id);
+        Cache::forget('thing:all');
+        Cache::forget('thing:'.$thing->id);
         $thing->update($request->all());
 
         return redirect()->route('thing.index');
