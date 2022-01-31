@@ -40,12 +40,12 @@
                 <div class="form-group">
                     <strong>Place:</strong>
 
-                <select class="form-control">
-                    <option id="NULL" name="place">
+                <select class="form-control" name="place">
+                    <option value="NULL">
                         нету
                     </option>
                     @foreach($places as $place)
-                    <option id="{{ $place->id }}" name="place">
+                    <option value="{{ $place->id }}">
                         {{ $place->name}}
                     </option>
                     @endforeach()
@@ -58,12 +58,12 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>User:</strong>
-                    <select class="form-control">
-                        <option id="NULL" name="place">
+                    <select class="form-control" name="user">
+                        <option value="NULL">
                             нету
                         </option>
                         @foreach($users as $user)
-                            <option id="" name="user">
+                            <option value="{{$user->id}}">
                                 {{ $user->username}}
                             </option>
                         @endforeach()

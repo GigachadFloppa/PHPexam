@@ -23,6 +23,7 @@ class ThingController extends Controller
 
     public function index()
     {
+        Cache::forget('things:all');
         $things = Cache::rememberForever('things:all', function(){
             return Thing::all();});
         return view('thing.index', compact('things'));
@@ -55,10 +56,10 @@ class ThingController extends Controller
         $uses->thing_id = $thing->id;
         $uses->place_id = request('place');
         $uses->user_id = request('user');
-        $uses->amount = 10;
+        $uses->amount = 1;
         $uses->save();
         $user = User::where('id', '!=', auth()->user()->id)->get();
-        Cache::forget('thing:all');
+        Cache::forget('things:all');
         return redirect()->route('thing.index');
     }
 
@@ -88,7 +89,7 @@ class ThingController extends Controller
         $thing->uses_->place_id = request('place');
         $thing->uses_->user_id = request('user');
 
-        Cache::forget('thing:all');
+        Cache::forget('things:all');
         Cache::forget('thing:'.$thing->id);
         $thing->update($request->all());
 
@@ -98,7 +99,7 @@ class ThingController extends Controller
 
     public function destroy(Thing $thing)
     {
-        Cache::forget('thing:all');
+        Cache::forget('things:all');
         Cache::forget('thing:'.$thing->id);
         $thing->delete();
 
