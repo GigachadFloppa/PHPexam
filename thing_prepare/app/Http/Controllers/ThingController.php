@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\EventPublicThing;
-use App\Jobs\MailSend;
-use App\Mail\OrderShipped;
 use App\Models\Place;
 use App\Models\Thing;
 use App\Models\User;
 use App\Models\Uses;
-use App\Notifications\NewThing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
 
 
 class ThingController extends Controller
@@ -107,31 +101,5 @@ class ThingController extends Controller
             ->with('success','post deleted successfully');
     }
 
-    //api
 
-
-//    public function api_create(Request $request){
-//
-//        $request->validate([
-//            'name' => 'required',
-//            'description' => 'required',
-//            'master' => 'required',
-//            'wrnt' => 'required'
-//        ]);
-//
-//        $thing = Thing::create([
-//                'name' => $request->input('name'),
-//                'description' => $request->input('description'),
-//                'master' => $request->input('master'),
-//                'wrnt' => $request->input('wrnt'),
-//            ]);
-//
-//        $response = [
-//          $thing
-//        ];
-//
-//        return response($response, 201);
-//    }
-//
-//
 }
